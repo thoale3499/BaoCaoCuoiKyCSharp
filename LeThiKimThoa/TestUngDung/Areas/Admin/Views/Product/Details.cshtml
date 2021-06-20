@@ -1,0 +1,52 @@
+﻿@model ModelEF.Model.Product
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header {
+    <i class="fa fa-desktop"></i>&nbsp;Chi tiết sản phẩm
+}
+<div>
+    <h4>Sản phẩm</h4>
+    <hr />
+    <table border="1" style="width: 500px; height: 250px; margin-left:150px">
+        <tr>
+            <th style="text-align: center">Mã sản phẩm</th>
+            <td>@Html.DisplayFor(model => model.ID)</td>
+        </tr>
+        <tr>
+            <th style="text-align: center">Tên sản phẩm</th>
+            <td>@Html.DisplayFor(model => model.Name)</td>
+        </tr>
+        <tr>
+            <th style="text-align: center">Đơn giá</th>
+            <td>@Html.DisplayFor(model => model.UnitCost)</td>
+        </tr>
+        <tr>
+            <th style="text-align: center">Số lượng</th>
+            <td>@Html.DisplayFor(model => model.Quantity)</td>
+        </tr>
+        <tr>
+            <th style="text-align: center">Loại sản phẩm</th>
+            <td>@Html.DisplayFor(model => model.Category.Name)</td>
+        </tr>
+        <tr>
+            <th style="text-align: center">Hình ảnh</th>
+            <td>@Html.DisplayFor(model => model.Image)</td>
+        </tr>
+        <tr>
+            <th style="text-align: center">Mô tả sản phẩm</th>
+            <td>@Html.DisplayFor(model => model.Description)</td>
+        </tr>
+        <tr>
+            <th style="text-align: center">Trạng thái</th>
+            <td>@Html.DisplayFor(model => model.Status)</td>
+        </tr>
+    </table>
+</div>
+<p style="margin-top: 20px; margin-left:50px">
+    <i class="fa fa-undo fa-fw"></i>@Html.ActionLink("Quay lại ", "Index")
+</p>
+
+

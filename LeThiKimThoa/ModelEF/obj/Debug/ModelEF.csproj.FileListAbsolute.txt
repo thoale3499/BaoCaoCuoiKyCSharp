@@ -1,0 +1,16 @@
+D:\LaptrinhC_Sharp\LyThuyet\DoAnCuoiKy\LeThiKimThoa\ModelEF\bin\Debug\ModelEF.dll.config
+D:\LaptrinhC_Sharp\LyThuyet\DoAnCuoiKy\LeThiKimThoa\ModelEF\bin\Debug\ModelEF.dll
+D:\LaptrinhC_Sharp\LyThuyet\DoAnCuoiKy\LeThiKimThoa\ModelEF\bin\Debug\ModelEF.pdb
+D:\LaptrinhC_Sharp\LyThuyet\DoAnCuoiKy\LeThiKimThoa\ModelEF\bin\Debug\EntityFramework.dll
+D:\LaptrinhC_Sharp\LyThuyet\DoAnCuoiKy\LeThiKimThoa\ModelEF\bin\Debug\EntityFramework.SqlServer.dll
+D:\LaptrinhC_Sharp\LyThuyet\DoAnCuoiKy\LeThiKimThoa\ModelEF\bin\Debug\EntityFramework.xml
+D:\LaptrinhC_Sharp\LyThuyet\DoAnCuoiKy\LeThiKimThoa\ModelEF\bin\Debug\EntityFramework.SqlServer.xml
+D:\LaptrinhC_Sharp\LyThuyet\DoAnCuoiKy\LeThiKimThoa\ModelEF\obj\Debug\ModelEF.csprojAssemblyReference.cache
+D:\LaptrinhC_Sharp\LyThuyet\DoAnCuoiKy\LeThiKimThoa\ModelEF\obj\Debug\ModelEF.csproj.CoreCompileInputs.cache
+D:\LaptrinhC_Sharp\LyThuyet\DoAnCuoiKy\LeThiKimThoa\ModelEF\obj\Debug\ModelEF.csproj.CopyComplete
+D:\LaptrinhC_Sharp\LyThuyet\DoAnCuoiKy\LeThiKimThoa\ModelEF\obj\Debug\ModelEF.dll
+D:\LaptrinhC_Sharp\LyThuyet\DoAnCuoiKy\LeThiKimThoa\ModelEF\obj\Debug\ModelEF.pdb
+D:\LaptrinhC_Sharp\LyThuyet\DoAnCuoiKy\LeThiKimThoa\ModelEF\bin\Debug\PagedList.dll
+D:\LaptrinhC_Sharp\LyThuyet\DoAnCuoiKy\LeThiKimThoa\ModelEF\bin\Debug\PagedList.Mvc.dll
+D:\LaptrinhC_Sharp\LyThuyet\DoAnCuoiKy\LeThiKimThoa\ModelEF\bin\Debug\PagedList.xml
+D:\LaptrinhC_Sharp\LyThuyet\DoAnCuoiKy\LeThiKimThoa\ModelEF\bin\Debug\PagedList.Mvc.xml

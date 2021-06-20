@@ -1,0 +1,224 @@
+﻿@using TestUngDung.Areas.Admin.Models;
+@using ModelEF;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="~/Assets/admin/images/favicon.png">
+    <title>@ViewBag.Title - Quản trị</title>
+    <!--Core CSS -->
+    <link href="~/Assets/admin/bs3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Assets/admin/js/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet">
+    <link href="~/Assets/admin/css/bootstrap-reset.css" rel="stylesheet">
+    <link href="~/Assets/admin/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Assets/admin/js/jvector-map/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+    <link href="~/Assets/admin/css/clndr.css" rel="stylesheet">
+    <!--clock css-->
+    <link href="~/Assets/admin/js/css3clock/css/style.css" rel="stylesheet">
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="~/Assets/admin/js/morris-chart/morris.css">
+    <!-- Custom styles for this template -->
+    <link href="~/Assets/admin/css/style.css" rel="stylesheet">
+    <link href="~/Assets/admin/css/style-responsive.css" rel="stylesheet" />
+
+</head>
+<body>
+    <section id="container">
+
+        <!--header start-->
+        <header class="header fixed-top clearfix">
+            <!--logo start-->
+            <div class="brand" style="background: #1fb5ad">
+
+                <a href="index.html" class="logo">
+                    <img src="~/Assets/admin/images/logo.png" alt="">
+                </a>
+                <div class="sidebar-toggle-box" style="background: #1fb5ad">
+                    <div class="fa fa-bars"></div>
+                </div>
+            </div>
+            <!--logo end-->
+
+            <div class="nav notify-row" id="top_menu">
+                <!--  notification start -->
+                <ul class="nav top-menu">
+                    <!-- settings start -->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="fa fa-tasks"></i>
+                            <span class="badge bg-success">8</span>
+                        </a>
+                    </li>
+                    <!-- settings end -->
+                    <!-- inbox dropdown start-->
+                    <li id="header_inbox_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="badge bg-important">4</span>
+                        </a>
+                    </li>
+                    <!-- inbox dropdown end -->
+                    <!-- notification dropdown start-->
+                    <li id="header_notification_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                            <i class="fa fa-bell-o"></i>
+                            <span class="badge bg-warning">3</span>
+                        </a>
+                    </li>
+                    <!-- notification dropdown end -->
+                </ul>
+                <!--  notification end -->
+            </div>
+            <div class="top-nav clearfix">
+                <!--search & user info start-->
+                <ul class="nav pull-right top-menu">
+                    <li>
+                        <input type="text" class="form-control search" placeholder=" Search">
+                    </li>
+                    <!-- user login dropdown start-->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <img alt="" src="~/Assets/admin/images/avatar1_small.jpg">
+                            <span class="username">
+                                @{ 
+                                    var session = (LoginModel)Session[Constants.USER_SESSION];
+                                    var result = "Noname";
+                                    if (session != null) { @session.username;}
+                                    else { @result; }
+                                }
+                            </span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu extended logout">
+                            <li><a href="#"><i class=" fa fa-suitcase"></i>Thông tin</a></li>
+                            <li><a href="#"><i class="fa fa-cog"></i>Thiết lập</a></li>
+                            <li>
+                                <a href="@Url.Action("Logout","Home")">
+                                    <i class="fa fa-key"></i>Thoát
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- user login dropdown end -->
+                    <li>
+                        <div class="toggle-right-box">
+                            <div class="fa fa-bars"></div>
+                        </div>
+                    </li>
+                </ul>
+                <!--search & user info end-->
+            </div>
+        </header>
+        <!--header end-->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse">
+                <!-- sidebar menu start-->
+                <div class="leftside-navigation">
+                    <ul class="sidebar-menu" id="nav-accordion">
+                        <li>
+                            @Html.ActionLink("Trang chủ", "Index", "Home")
+                        </li>
+                        <li class="sub-menu">
+                            @Html.ActionLink("Quản lý người dùng", "Index", "User")
+                        </li>
+
+                        <li>
+                            @Html.ActionLink("Quản lý sản phẩm", "Index", "Product")
+                        </li>
+                    </ul>
+                </div>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--earning graph start-->
+                        <section class="panel">
+                            <header class="panel-heading">
+                                <label style="color:red"><b>@RenderSection("header", required: true)</b></label>
+                            </header>
+                            <div class="panel-body">
+                                @if (TempData["AlertMessage"] != null)
+                                {
+                                    <div id="AlertBox" class="alert @TempData["AlertType"]" role="alert">
+                                        @TempData["AlertMessage"]
+                                    </div>
+                                }
+                                @RenderBody()
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </section>
+        </section>
+        <!--main content end-->
+    </section>
+    <!-- Placed js at the end of the document so the pages load faster -->
+    <!--Core js-->
+    <script src="~/Assets/admin/js/jquery.js"></script>
+    <script src="~/Assets/admin/js/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
+    <script src="~/Assets/admin/bs3/js/bootstrap.min.js"></script>
+    <script src="~/Assets/admin/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="~/Assets/admin/js/jquery.scrollTo.min.js"></script>
+    <script src="~/Assets/admin/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
+    <script src="~/Assets/admin/js/jquery.nicescroll.js"></script>
+    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
+    <script src="~/Assets/admin/js/skycons/skycons.js"></script>
+    <script src="~/Assets/admin/js/jquery.scrollTo/jquery.scrollTo.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="~/Assets/admin/js/calendar/clndr.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <script src="~/Assets/admin/js/calendar/moment-2.2.1.js"></script>
+    <script src="~/Assets/admin/js/evnt.calendar.init.js"></script>
+    <script src="~/Assets/admin/js/jvector-map/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/Assets/admin/js/jvector-map/jquery-jvectormap-us-lcc-en.js"></script>
+    <script src="~/Assets/admin/js/gauge/gauge.js"></script>
+    <!--clock init-->
+    <script src="~/Assets/admin/js/css3clock/js/css3clock.js"></script>
+    <!--Easy Pie Chart-->
+    <script src="~/Assets/admin/js/easypiechart/jquery.easypiechart.js"></script>
+    <!--Sparkline Chart-->
+    <script src="~/Assets/admin/js/sparkline/jquery.sparkline.js"></script>
+    <!--Morris Chart-->
+    <script src="~/Assets/admin/js/morris-chart/morris.js"></script>
+    <script src="~/Assets/admin/js/morris-chart/raphael-min.js"></script>
+    <!--jQuery Flot Chart-->
+    <script src="~/Assets/admin/js/flot-chart/jquery.flot.js"></script>
+    <script src="~/Assets/admin/js/flot-chart/jquery.flot.tooltip.min.js"></script>
+    <script src="~/Assets/admin/js/flot-chart/jquery.flot.resize.js"></script>
+    <script src="~/Assets/admin/js/flot-chart/jquery.flot.pie.resize.js"></script>
+    <script src="~/Assets/admin/js/flot-chart/jquery.flot.animator.min.js"></script>
+    <script src="~/Assets/admin/js/flot-chart/jquery.flot.growraf.js"></script>
+    <script src="~/Assets/admin/js/dashboard.js"></script>
+    <script src="~/Assets/admin/js/jquery.customSelect.min.js"></script>
+    <!--common script init for all pages-->
+    <script src="~/Assets/admin/js/scripts.js"></script>
+    <!--script for this page-->
+    @section scripts{
+        <script>
+            $(function () {
+                $('#AlertBox').removeClass('hide');
+                $('#AlertBox').delay(2000).slideUp(500);
+            });
+
+        </script>
+    }
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+</body>
+</html>
