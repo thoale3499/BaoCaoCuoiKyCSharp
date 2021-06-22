@@ -25,11 +25,15 @@ namespace TestUngDung.Areas.Admin.Controllers
             {
                 var user = new UserDAO();
                 var result = user.login(login.username, Common.EncryptMD5(login.password));
-                if(result == 1)
+                if (result == 1)
                 {
                     //ModelState.AddModelError("", "Đăng nhập thành công");
                     Session.Add(Constants.USER_SESSION, login);
                     return RedirectToAction("Index", "Home");
+                }
+                else if (result == 0)
+                {
+                    ModelState.AddModelError("", "Tài khoản của bạn đã bị khóa");
                 }
                 else
                 {

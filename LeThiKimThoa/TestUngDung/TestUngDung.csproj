@@ -1268,6 +1268,7 @@
     <Content Include="Areas\Shop\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Shop\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Shop\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Create.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

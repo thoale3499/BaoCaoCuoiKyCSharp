@@ -1,4 +1,5 @@
-﻿using ModelEF.DAO;
+﻿using ModelEF;
+using ModelEF.DAO;
 using ModelEF.Model;
 using PagedList;
 using System;
@@ -28,6 +29,51 @@ namespace TestUngDung.Areas.Admin.Controllers
             return View(model.ToPagedList(page, pagesize));
         }
 
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        protected void SetAlert(string message, string type)
+        {
+            TempData["AlertMessage"] = message;
+            if (type == "success")
+            {
+                TempData["AlertType"] = "alert-success";
+            }
+            else if (type == "warning")
+            {
+                TempData["AlertType"] = "alert-warning";
+            }
+            else if (type == "error")
+            {
+                TempData["AlertType"] = "alert-danger";
+            }
+        }
+        [HttpPost]
+        public ActionResult Create(UserAccount model)
+        {
+            var dao = new UserDAO();
+            if (dao.Find(model.UserName)!= null)
+            {
+                SetAlert("Tài khoản đã tồn tại", "error");
+                return RedirectToAction("Create", "User");
+            }
+            var pass = Common.EncryptMD5(model.Password);
+            model.Password = pass;
+            string result = dao.Insert(model);
+            if (!string.IsNullOrEmpty(result))
+            {
+                SetAlert("Tài khoản đã được thêm thành công", "success");
+                return RedirectToAction("Index", "User");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Tạo mới người dùng không thành công");
+            }
+            return View();
+        }
         [HttpDelete]
         public ActionResult Delete(int id)
         {
